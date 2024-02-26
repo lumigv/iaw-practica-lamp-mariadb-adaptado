@@ -2,6 +2,8 @@
 // including the database connection file
 include_once("config.php");
 
+//isset determina si una variable está definida y no es null
+//Si alguna variable no está definida, sale
 if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && isset($_POST['surname2']) && isset($_POST['age']) && isset($_POST['email'])) {
 	
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
@@ -64,63 +66,62 @@ mysqli_close($mysqli);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" crossorigin="anonymous">	
 	<title>Edit Data</title>
 </head>
 
 <body>
-<div class="col-lg-8 mx-auto py-md-5">
-	<header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-		<a href="/" class="text-dark text-decoration-none">
-			<img src="images/code-solid.svg" width="40" height="32" class="me-2">
-			<span class="fs-4">Company name</span>
+<div>
+	<header>
+		<a href="/">
+			<img src="images/code-solid.svg" width="40" height="32">
+			<span >Company name</span>
 		</a>
 	</header>
 	
 	<main>				
-	<ul class="nav nav-tabs">
-		<li class="nav-item"><a href="index.php" class="nav-link" >Home</a></li>
-		<li class="nav-item"><a href="add.html" class="nav-link">Add</a></li>
-		<li class="nav-item"><a href="" class="nav-link active">Edit</a></li>		
+	<ul>
+		<li><a href="index.php" >Home</a></li>
+		<li><a href="add.html" >Add</a></li>
+		<li><a href="">Edit</a></li>		
 	</ul>
 	<br/>
 
 	<form action="edit.php" method="post">
 
-		<div class="mb-3">
+		<div>
 			<label for="name">Name</label>
-			<input type="text" class="form-control" name="name" value="<?php echo $name;?>" required>
+			<input type="text" name="name" id="name" placeholder="Nombre del usuario" value="<?php echo $name;?>" required>
 		</div>
 
-		<div class="mb-3">
-			<label for="name">Surname1</label>
-			<input type="text" class="form-control" name="surname1" value="<?php echo $surname1;?>" required>
+		<div>
+			<label for="surname1">Surname1</label>
+			<input type="text" name="surname1" value="<?php echo $surname1;?>" required>
 		</div>
 
-		<div class="mb-3">
-			<label for="name">Surname2</label>
-			<input type="text" class="form-control" name="surname2" value="<?php echo $surname2;?>">
+		<div>
+			<label for="surname2">Surname2</label>
+			<input type="text" name="surname2" value="<?php echo $surname2;?>">
 		</div>
 
-		<div class="mb-3">
-			<label for="name">Age</label>
-			<input type="number" class="form-control" name="age" value="<?php echo $age;?>" required>
+		<div>
+			<label for="age">Age</label>
+			<input type="number" name="age" value="<?php echo $age;?>" required>
 		</div>
 
-		<div class="mb-3">
-			<label for="name">Email</label>
-			<input type="email" class="form-control" name="email" value="<?php echo $email;?>" required>
+		<div>
+			<label for="email">Email</label>
+			<input type="email" name="email" value="<?php echo $email;?>" required>
 		</div>
 
-		<div class="mb-3">
+		<div >
 			<input type="hidden" name="id" value=<?php echo $id;?>>
-			<input type="submit" value="Update" class="form-control  btn btn-primary">
+			<input type="submit" value="Update">
 		</div>
 	</form>
 
 	</main>	
-	<footer class="pt-5 my-5 text-muted border-top">
-	Created by the IES Celia team &copy; 2022
+	<footer>
+	Created by the IES Miguel Herrero team &copy; 2022
   	</footer>
 </div>
 </body>

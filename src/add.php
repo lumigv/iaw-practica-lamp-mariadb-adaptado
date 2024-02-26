@@ -3,16 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" crossorigin="anonymous">	
 	<title>Add Data</title>
 </head>
 
 <body>
-<div class="col-lg-8 mx-auto py-md-5">
-	<header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-		<a href="/" class="text-dark text-decoration-none">
-			<img src="images/code-solid.svg" width="40" height="32" class="me-2">
-			<span class="fs-4">Company name</span>
+<div>
+	<header>
+		<a href="/">
+			<img src="images/code-solid.svg" width="40" height="32">
+			<span>Company name</span>
 		</a>
 	</header>
 
@@ -22,36 +21,41 @@
 // including the database connection file
 include_once("config.php");
 
+//isset determina si una variable está definida y no es null
+//Si alguna variable no está definida, sale
 if(!isset($_POST['name']) || !isset($_POST['age']) || !isset($_POST['email']) || !isset($_POST['surname1'])) {
 	exit;
 } 
 
+//incorporamos caracteres de Scape en aquellos caracteres especiales que puede generar problemas en sentencias SQL
+//Los caracteres afectados son: NUL (ASCII 0), \n, \r, \, ', ", and CTRL+Z.
 $name = mysqli_real_escape_string($mysqli, $_POST['name']);
 $surname1 = mysqli_real_escape_string($mysqli, $_POST['surname1']);
 $surname2 = mysqli_real_escape_string($mysqli, $_POST['surname2']);
 $age = mysqli_real_escape_string($mysqli, $_POST['age']);
 $email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
-// checking empty fields
+// Determina si una variable está vacía ("empty")
+// Una variable es "empty" si no existe o su valor es falso
 if(empty($name) || empty($age) || empty($email) || empty($surname1)) {
 	if(empty($name)) {
-		echo "<div class='alert alert-danger' role='alert'>Name field is empty</div>";
+		echo "<div>Name field is empty</div>";
 	}
 
 	if(empty($surname1)) {
-		echo "<div class='alert alert-danger' role='alert'>Surname1 field is empty</div>";
+		echo "<div>Surname1 field is empty</div>";
 	}
 
 	if(empty($age)) {
-		echo "<div class='alert alert-danger' role='alert'>Age field is empty</div>";
+		echo "<div>Age field is empty</div>";
 	}
 
 	if(empty($email)) {
-		echo "<div class='alert alert-danger' role='alert'>Email field is empty</div>";
+		echo "<div>Email field is empty</div>";
 	}
 
 	// link to the previous page
-	echo "<a href='javascript:self.history.back();' class='btn btn-primary'>Go Back</a>";
+	echo "<a href='javascript:self.history.back();'>Go Back</a>";
 } else {
 	// if all the fields are filled (not empty)
 
@@ -68,16 +72,16 @@ if(empty($name) || empty($age) || empty($email) || empty($surname1)) {
 	*/
 
 	// display success message
-	echo "<div class='alert alert-success' role='alert'>Data added successfully</div>";
-	echo "<a href='index.php' class='btn btn-primary'>View Result</a>";
+	echo "<div>Data added successfully</div>";
+	echo "<a href='index.php'>View Result</a>";
 }
 
 mysqli_close($mysqli);
 
 ?>
 	</main>
-	<footer class="pt-5 my-5 text-muted border-top">
-    Created by the IES Celia team &copy; 2022
+	<footer>
+    Created by the IES Miguel Herrero team &copy; 2022
   	</footer>
 </div>
 </body>
