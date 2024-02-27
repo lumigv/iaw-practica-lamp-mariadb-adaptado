@@ -4,7 +4,7 @@
 include_once("config.php");
 
 //mysqli_query-Realiza una consulta a la base de datos
-// Hacemos una búsuqueda (selección) en orden descendente. Desde el último hasta el 1º.
+// Hacemos una búsqueda (selección) en orden descendente. Desde el último hasta el 1º.
 
 $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
 
@@ -62,13 +62,13 @@ mysqli_stmt_close($stmt);
 
 <?php
 //mysqli_fetch_array- Obtiene una fila de resultados como un array asociativo, numérico o ambos
-	while($row = mysqli_fetch_array($result)) {
+	while($res = mysqli_fetch_array($result)) {
 		echo "<tr>\n";
-		echo "<td>".$row['name']."</td>\n";
-		echo "<td>".$row['surname1']."</td>\n";
-		echo "<td>".$row['surname2']."</td>\n";
-		echo "<td>".$row['age']."</td>\n";
-		echo "<td>".$row['email']."</td>\n";
+		echo "<td>".$res['name']."</td>\n";
+		echo "<td>".$res['surname1']."</td>\n";
+		echo "<td>".$res['surname2']."</td>\n";
+		echo "<td>".$res['age']."</td>\n";
+		echo "<td>".$res['email']."</td>\n";
 		echo "<td>";
 		echo "<a href=\"edit.php?id=$row[id]\">Editar</a>\n";
 		echo "<a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('¿Está segur@ que desea eliminar el registro?')\" >Eliminar</a></td>\n";
