@@ -3,16 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Add Data</title>
+	<title>Alta Empleado</title>
 </head>
 
 <body>
 <div>
 	<header>
-		<a href="/">
-			<img src="images/code-solid.svg" width="40" height="32">
-			<span>Company name</span>
-		</a>
+		<h1>Panel de Control</h1>
 	</header>
 
 	<main>
@@ -29,6 +26,7 @@ if(!isset($_POST['name']) || !isset($_POST['age']) || !isset($_POST['email']) ||
 
 //incorporamos caracteres de Scape en aquellos caracteres especiales que puede generar problemas en sentencias SQL
 //Los caracteres afectados son: NUL (ASCII 0), \n, \r, \, ', ", and CTRL+Z.
+//Obtiene los datos del formulario
 $name = mysqli_real_escape_string($mysqli, $_POST['name']);
 $surname1 = mysqli_real_escape_string($mysqli, $_POST['surname1']);
 $surname2 = mysqli_real_escape_string($mysqli, $_POST['surname2']);
@@ -59,7 +57,7 @@ if(empty($name) || empty($age) || empty($email) || empty($surname1)) {
 } else {
 	// if all the fields are filled (not empty)
 
-	// insert data to database
+	// inserta los datos en la base de datos
 	$query = "INSERT INTO users (name,surname1,surname2,age,email) VALUES('$name','$surname1','$surname2',$age,'$email')";
 	$result = mysqli_query($mysqli, $query);
 
@@ -76,12 +74,13 @@ if(empty($name) || empty($age) || empty($email) || empty($surname1)) {
 	echo "<a href='index.php'>View Result</a>";
 }
 
+//Cierra la conexión
 mysqli_close($mysqli);
 
 ?>
 	</main>
 	<footer>
-    Created by the IES Miguel Herrero team &copy; 2022
+    Created by the IES Miguel Herrero team &copy; 2024
   	</footer>
 </div>
 </body>

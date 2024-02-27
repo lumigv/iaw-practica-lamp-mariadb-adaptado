@@ -1,4 +1,4 @@
-CREATE TABLE users2 (
+CREATE TABLE users (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   surname1 VARCHAR(100) NOT NULL,
   surname2 VARCHAR(100),
@@ -8,4 +8,5 @@ CREATE TABLE users2 (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO users (surname1, surname2, name, age, email) VALUES('Colmenar', 'Viejo', 'Bonifacia', 25, 'bonifacia@gmail.com');
+INSERT INTO users (surname1, surname2, name, age, email) VALUES('Santa Lucia', 'Tirajana', 'Macario', 50, 'macario@gmail.com');
 

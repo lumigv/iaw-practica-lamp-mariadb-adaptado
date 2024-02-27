@@ -1,11 +1,12 @@
 <?php
-// including the database connection file
+// Incluimos el fichero de conexión a la Base de datos
+//Conexión a la base de datos
 include_once("config.php");
 
 //isset determina si una variable está definida y no es null
 //Si alguna variable no está definida, sale
 if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && isset($_POST['surname2']) && isset($_POST['age']) && isset($_POST['email'])) {
-	
+//Obtiene los datos del formulario	
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
 	$name = mysqli_real_escape_string($mysqli, $_POST['name']);
 	$surname1 = mysqli_real_escape_string($mysqli, $_POST['surname1']);
@@ -31,7 +32,7 @@ if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && 
 			echo "<font color='red'>Email field is empty.</font><br/>";
 		}
 	} else {
-		// updating the table
+		//Actualiza los datos en la base de datos
 		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,surname1=?,surname2=?,age=?,email=? WHERE id=?");
 		mysqli_stmt_bind_param($stmt, "sssisi", $name, $surname1, $surname2, $age, $email, $id);
 		mysqli_stmt_execute($stmt);
@@ -66,56 +67,54 @@ mysqli_close($mysqli);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Edit Data</title>
+	<title>Modificacion Empleado</title>
 </head>
 
 <body>
 <div>
 	<header>
-		<a href="/">
-			<img src="images/code-solid.svg" width="40" height="32">
-			<span >Company name</span>
-		</a>
+		<h1>Panel de Control</h1>
 	</header>
 	
 	<main>				
 	<ul>
-		<li><a href="index.php" >Home</a></li>
-		<li><a href="add.html" >Add</a></li>
-		<li><a href="">Edit</a></li>		
+		<li><a href="index.php" >Inicio</a></li>
+		<li><a href="add.html" >Alta</a></li>
+		<li><a href="">Modificación</a></li>		
 	</ul>
-	<br/>
+	<h2>Modificación empleado</h2>
 
 	<form action="edit.php" method="post">
 
 		<div>
-			<label for="name">Name</label>
-			<input type="text" name="name" id="name" placeholder="Nombre del usuario" value="<?php echo $name;?>" required>
+			<label for="name">Nombre</label>
+			<input type="text" name="name" id="name" value="<?php echo $name;?>" required>
 		</div>
 
 		<div>
-			<label for="surname1">Surname1</label>
-			<input type="text" name="surname1" value="<?php echo $surname1;?>" required>
+			<label for="surname1">1º Apellido</label>
+			<input type="text" name="surname1" id="surname1" value="<?php echo $surname1;?>" required>
 		</div>
 
 		<div>
-			<label for="surname2">Surname2</label>
-			<input type="text" name="surname2" value="<?php echo $surname2;?>">
+			<label for="surname2">2º Apellido</label>
+			<input type="text" name="surname2" id="surname2" value="<?php echo $surname2;?>">
 		</div>
 
 		<div>
-			<label for="age">Age</label>
-			<input type="number" name="age" value="<?php echo $age;?>" required>
+			<label for="age">Edad</label>
+			<input type="number" name="age" id="age" value="<?php echo $age;?>" required>
 		</div>
 
 		<div>
-			<label for="email">Email</label>
-			<input type="email" name="email" value="<?php echo $email;?>" required>
+			<label for="email">Correo</label>
+			<input type="email" name="email" id="email" value="<?php echo $email;?>" required>
 		</div>
 
 		<div >
 			<input type="hidden" name="id" value=<?php echo $id;?>>
-			<input type="submit" value="Update">
+			<input type="submit" value="Guardar cambios">
+			<input type="button" value="Cancelar" onclick="location.href='index.php'">
 		</div>
 	</form>
 

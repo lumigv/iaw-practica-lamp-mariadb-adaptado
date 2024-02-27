@@ -1,11 +1,12 @@
 <?php
-// including the database connection file
+// Incluimos el fichero de conexión a la Base de datos
+//Conexión a la base de datos
 include("config.php");
 
-// getting id of the data from url
+// Obtiene el id del dato a borrar de la URL
 $id = $_GET['id'];
 
-// deleting the row from table
+//Borra el registro de la base de datos
 $stmt = mysqli_prepare($mysqli, "DELETE FROM users WHERE id=?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);

@@ -1,8 +1,9 @@
 <?php
-// including the database connection file
+// Incluimos el fichero de conexión a la Base de datos
+//Conexión a la base de datos
 include_once("config.php");
 
-// fetching data in descending order (lastest entry first)
+// Hacemos una búsuqueda (selección) en orden descendente. Desde el último hasta el 1º.
 $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
 
 ?>
@@ -12,39 +13,34 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Homepage</title>
+	<title>Panel de control</title>
 </head>
-
 <body>
 <div>
 	<header>
-		<a href="/">
-			<img src="images/code-solid.svg" width="40" height="32">
-			<span>Company name</span>
-		</a>
+		<h1>Panel de Control</h1>
 	</header>
 
 	<main>
 	<ul>
-		<li><a href="index.php">Home</a></li>
-		<li><a href="add.html">Add</a></li>
+		<li><a href="index.php">Inicio</a></li>
+		<li><a href="add.html">Alta</a></li>
 	</ul>
-	<br/>
-	
+	<h2>Listado de empleados</h2>
 	<table>
 	<thead>
 		<tr>
-			<th>Name</th>
-			<th>Surname1</th>
-			<th>Surname2</th>
-			<th>Age</th>
-			<th>Email</th>
-			<th>Update</th>
+			<th>Nombre</th>
+			<th>1º Apellido</th>
+			<th>2º Apellido</th>
+			<th>Edad</th>
+			<th>Correo</th>
+			<th>Acciones</th>
 		</tr>
 	</thead>
 	<tbdody>
 
-	<?php
+<?php
 	while($row = mysqli_fetch_array($result)) {
 		echo "<tr>\n";
 		echo "<td>".$row['name']."</td>\n";
@@ -53,8 +49,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
 		echo "<td>".$row['age']."</td>\n";
 		echo "<td>".$row['email']."</td>\n";
 		echo "<td>";
-		echo "<a href=\"edit.php?id=$row[id]\">Edit</a>\n";
-		echo "<a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" >Delete</a></td>\n";
+		echo "<a href=\"edit.php?id=$row[id]\">Editar</a>\n";
+		echo "<a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('¿Está segur@ que desea eliminar el registro?')\" >Eliminar</a></td>\n";
 		echo "</td>";
 		echo "</tr>\n";
 	}
