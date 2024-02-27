@@ -3,8 +3,28 @@
 //Conexión a la base de datos
 include_once("config.php");
 
+//mysqli_query-Realiza una consulta a la base de datos
 // Hacemos una búsuqueda (selección) en orden descendente. Desde el último hasta el 1º.
+
 $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
+
+//$result = mysqli_query($mysqli, "SELECT * FROM users WHERE name='Ana'");
+
+/*
+$stmt = mysqli_prepare($mysqli, "SELECT * FROM users ORDER BY id DESC");
+mysqli_stmt_execute($stmt);
+mysqli_stmt_free_result($stmt);
+mysqli_stmt_close($stmt);
+*/
+
+/*
+$nombre = 'Ana'
+$stmt = mysqli_prepare($mysqli, "SELECT * FROM users WHERE name=?");
+mysqli_stmt_bind_param($stmt, "s", $nombre);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_free_result($stmt);
+mysqli_stmt_close($stmt);
+*/
 
 ?>
 
@@ -41,6 +61,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
 	<tbdody>
 
 <?php
+//mysqli_fetch_array- Obtiene una fila de resultados como un array asociativo, numérico o ambos
 	while($row = mysqli_fetch_array($result)) {
 		echo "<tr>\n";
 		echo "<td>".$row['name']."</td>\n";

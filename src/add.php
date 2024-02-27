@@ -61,6 +61,7 @@ if(empty($name) || empty($age) || empty($email) || empty($surname1)) {
 	$query = "INSERT INTO users (name,surname1,surname2,age,email) VALUES('$name','$surname1','$surname2',$age,'$email')";
 	$result = mysqli_query($mysqli, $query);
 
+	//Consulta preparada
 	/*
 	$stmt = mysqli_prepare($mysqli, "INSERT INTO users (name,surname1,surname2,age,email) VALUES(?,?,?,?,?)");
 	mysqli_stmt_bind_param($stmt, "sssis", $name, $surname1, $surname2, $age, $email);

@@ -5,20 +5,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>Panel de control</title>
 </head>
-
 <body>
 <div>
 	<header>
-        <h1>Panel de Control</h1>
+		<h1>Panel de Control</h1>
 	</header>
+
 	<main>
 	<ul>
-		<li><a href="index.html">Inicio</a></li>
+		<li><a href="index.php">Inicio</a></li>
 		<li><a href="add.html">Alta</a></li>
 	</ul>
 	<h2>Listado de empleados</h2>
-	
-    <table>
+	<table>
 	<thead>
 		<tr>
 			<th>Nombre</th>
@@ -38,7 +37,7 @@
 			<td>ana@gmail.com</td>
 			<td>
                 <a href="edit.php">Editar</a>
-                <a href="delete.php">Baja</a>
+                <a href="delete.php" onClick="return confirm('¿Está segur@ que desea eliminar el registro?')">Baja</a>
             </td>
 		</tr>
         <tr>
@@ -49,7 +48,7 @@
 			<td>pedro@gmail.com</td>
 			<td>
                 <a href="edit.php">Editar</a>
-                <a href="delete.php">Baja</a>
+                <a href="delete.php" onClick="return confirm('¿Está segur@ que desea eliminar el registro?')">Baja</a>
             </td>
 		</tr>
         <tr>
@@ -60,7 +59,7 @@
 			<td>patricia@gmail.com</td>
 			<td>
                 <a href="edit.php">Editar</a>
-                <a href="delete.php">Baja</a>
+                <a href="delete.php" onClick="return confirm('¿Está segur@ que desea eliminar el registro?')">Baja</a>
             </td>
 		</tr>
 	</tbdody>

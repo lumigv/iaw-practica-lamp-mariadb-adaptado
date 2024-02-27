@@ -33,7 +33,11 @@ if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && 
 		}
 	} else {
 		//Actualiza los datos en la base de datos
+		//Utiliza sentencias preparadas. Se usa para ejecutar la misma sentencia repetidamente con gran eficacia.
+		//Las sentencias preparadas consiste en 2 etapas: preparación y ejecución
+		//1ª ETAPA: preparar
 		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,surname1=?,surname2=?,age=?,email=? WHERE id=?");
+		//2ª ETAPA: vincular y ejecutar
 		mysqli_stmt_bind_param($stmt, "sssisi", $name, $surname1, $surname2, $age, $email, $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
@@ -67,7 +71,7 @@ mysqli_close($mysqli);
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<title>Modificacion Empleado</title>
+	<title>Modificación Empleado</title>
 </head>
 
 <body>
