@@ -5,7 +5,8 @@ include_once("config.php");
 
 //isset determina si una variable está definida y no es null
 //Si alguna variable no está definida, sale
-if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && isset($_POST['surname2']) && isset($_POST['age']) && isset($_POST['email'])) {
+//if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && isset($_POST['surname2']) && isset($_POST['age']) && isset($_POST['email'])) {
+if(isset($_POST['update'])) {
 //Obtiene los datos del formulario	
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
 	$name = mysqli_real_escape_string($mysqli, $_POST['name']);
