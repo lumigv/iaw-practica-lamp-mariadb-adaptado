@@ -70,8 +70,8 @@ mysqli_stmt_close($stmt);
 		echo "<td>".$res['age']."</td>\n";
 		echo "<td>".$res['email']."</td>\n";
 		echo "<td>";
-		echo "<a href=\"edit.php?id=$row[id]\">Editar</a>\n";
-		echo "<a href=\"delete.php?id=$row[id]\" onClick=\"return confirm('¿Está segur@ que desea eliminar el registro?')\" >Eliminar</a></td>\n";
+		echo "<a href=\"edit.php?id=$res[id]\">Editar</a>\n";
+		echo "<a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('¿Está segur@ que desea eliminar el registro?')\" >Eliminar</a></td>\n";
 		echo "</td>";
 		echo "</tr>\n";
 	}

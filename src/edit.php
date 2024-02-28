@@ -6,6 +6,7 @@ include_once("config.php");
 //isset determina si una variable está definida y no es null
 //Si alguna variable no está definida, sale
 //if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname1']) && isset($_POST['surname2']) && isset($_POST['age']) && isset($_POST['email'])) {
+echo "El update es:".$_POST['update']."<br>";	
 if(isset($_POST['update'])) {
 //Obtiene los datos del formulario	
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
@@ -16,7 +17,8 @@ if(isset($_POST['update'])) {
 	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
 	// checking empty fields
-	if(empty($name) || empty($surname1) || empty($age) || empty($email)) {
+	if(empty($name) || empty($surname1) || empty($age) || empty($email)) 
+	{
 		if(empty($name)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
@@ -32,7 +34,9 @@ if(isset($_POST['update'])) {
 		if(empty($email)) {
 			echo "<font color='red'>Email field is empty.</font><br/>";
 		}
-	} else {
+	} 
+	else 
+	{
 		//Actualiza los datos en la base de datos
 		//Utiliza sentencias preparadas. Se usa para ejecutar la misma sentencia repetidamente con gran eficacia.
 		//Las sentencias preparadas consiste en 2 etapas: preparación y ejecución
@@ -53,6 +57,7 @@ if(isset($_POST['update'])) {
 <?php
 // getting id from url
 $id = $_GET['id'];
+echo "El id es:".$id."<br>";
 
 $id = mysqli_real_escape_string($mysqli, $id);
 
@@ -118,7 +123,7 @@ mysqli_close($mysqli);
 
 		<div >
 			<input type="hidden" name="id" value=<?php echo $id;?>>
-			<input type="submit" value="Guardar cambios">
+			<input type="submit" name="update" value="Guardar cambios">
 			<input type="button" value="Cancelar" onclick="location.href='index.php'">
 		</div>
 	</form>

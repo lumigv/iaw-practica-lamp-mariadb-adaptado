@@ -20,11 +20,17 @@ include_once("config.php");
 
 //isset determina si una variable está definida y no es null
 //Si alguna variable no está definida, sale
-/*if(!isset($_POST['name']) || !isset($_POST['age']) || !isset($_POST['email']) || !isset($_POST['surname1'])) {
+/*if (!isset($_POST['name']) || !isset($_POST['age']) || !isset($_POST['email']) || !isset($_POST['surname1'])) 
+{
 	exit;
-} */
+}*
 //Otra manera
-if(isset($_POST['Submit'])) {
+/*else
+{*/
+	echo "Estamos en la pagina add.php<br>";
+	echo "El insert es:".$_POST['inserta']."<br>";
+if(isset($_POST['inserta'])) 
+{
 	//incorporamos caracteres de Scape en aquellos caracteres especiales que puede generar problemas en sentencias SQL
 	//Los caracteres afectados son: NUL (ASCII 0), \n, \r, \, ', ", and CTRL+Z.
 	//Obtiene los datos del formulario
@@ -34,9 +40,10 @@ if(isset($_POST['Submit'])) {
 	$age = mysqli_real_escape_string($mysqli, $_POST['age']);
 	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
-// Determina si una variable está vacía ("empty")
-// Una variable es "empty" si no existe o su valor es falso
-	if(empty($name) || empty($age) || empty($email) || empty($surname1)) {
+	// Determina si una variable está vacía ("empty")
+	// Una variable es "empty" si no existe o su valor es falso
+	if(empty($name) || empty($age) || empty($email) || empty($surname1)) 
+	{
 		if(empty($name)) {
 			echo "<div>Name field is empty</div>";
 		}
@@ -54,15 +61,17 @@ if(isset($_POST['Submit'])) {
 		}
 
 		// Enlace a la siguiente página
-		echo "<a href='javascript:self.history.back();'>Go Back</a>";
-	} else {
+		echo "<a href='javascript:self.history.back();'>Bolver atras</a>";
+	} 
+	else 
+	{
 	// Si todos los campos están completos (no vacíos)
 	// inserta los datos en la base de datos
 	//$query = "INSERT INTO users (name,surname1,surname2,age,email) VALUES('$name','$surname1','$surname2',$age,'$email')";
 	//$result = mysqli_query($mysqli, $query);
 
 	//Consulta preparada
-	$stmt = mysqli_prepare($mysqli, "INSERT INTO users (name,surname1,surname2,age,email) VALUES(?,?,?,?,?)");
+	$stmt = mysqli_prepare($mysqli, "INSERT INTO users(name,surname1,surname2,age,email) VALUES(?,?,?,?,?)");
 	mysqli_stmt_bind_param($stmt, "sssis", $name, $surname1, $surname2, $age, $email);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_free_result($stmt);
@@ -72,12 +81,14 @@ if(isset($_POST['Submit'])) {
 	// display success message
 	echo "<div>Datos añadidos correctamente</div>";
 	echo "<a href='index.php'>Ver resultado</a>";
+	}
 }
 
 //Cierra la conexión
 mysqli_close($mysqli);
 
 ?>
+
 	</main>
 	<footer>
     Created by the IES Miguel Herrero team &copy; 2024
